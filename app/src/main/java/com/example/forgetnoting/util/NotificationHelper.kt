@@ -20,7 +20,7 @@ class NotificationHelper(private val context: Context) {
             val channel = NotificationChannel(
                 Constants.NOTIFICATION_CHANNEL_ID,
                 Constants.NOTIFICATION_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 description = "Reminder channel notification"
             }

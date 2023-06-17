@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.workDataOf
+import androidx.work.*
 import com.example.forgetnoting.databinding.ActivityMainBinding
+import com.example.forgetnoting.util.ReminderManager
 import com.example.forgetnoting.util.ReminderWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -34,18 +33,25 @@ class MainActivity : AppCompatActivity() {
             chosenDay = day
         }
 
-        binding.timePicker.setOnTimeChangedListener { timePicker, hour, minute ->
+        binding.timePicker.setOnTimeChangedListener { _, hour, minute ->
             chosenHour = hour
             chosenMinute = minute
         }
         binding.btSet.setOnClickListener {
-            val userSelectedDateTime = Calendar.getInstance()
-            userSelectedDateTime.set(chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute)
-            val todayDateTime = Calendar.getInstance()
-            val differenceInTime =
-                (userSelectedDateTime.timeInMillis / 1000) - (todayDateTime.timeInMillis / 1000)
-            Log.d("Reminder", differenceInTime.toString())
-            createWorkRequest(binding.etTaskName.text.toString(), differenceInTime)
+            val reminderTime="$chosenHour:$chosenMinute"
+            Log.d("Alarm--->","$reminderTime")
+            ReminderManager.startReminder(this, reminderTime)
+//            val userSelectedDateTime = Calendar.getInstance().apply {
+//                set(Calendar.MINUTE, chosenMinute)
+//            }
+//            val todayDateTime = Calendar.getInstance()
+//            if (todayDateTime.before(userSelectedDateTime)) {
+//                userSelectedDateTime.add(Calendar.HOUR_OF_DAY, 1)
+//            }
+//            val differenceInTime =
+//                (userSelectedDateTime.timeInMillis / 1000) - (todayDateTime.timeInMillis / 1000)
+//            Log.d("Reminder", differenceInTime.toString())
+////            createWorkRequest(binding.etTaskName.text.toString(), differenceInTime)
             Toast.makeText(this, "Reminder set", Toast.LENGTH_SHORT).show()
         }
     }
@@ -62,6 +68,24 @@ class MainActivity : AppCompatActivity() {
             .build()
         WorkManager.getInstance(this).enqueue(request)
 
+    }
+
+    private fun createPeriodicWorkRequest(message: String, timeDelayInSeconds: Long) {
+        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(1, TimeUnit.HOURS)
+            .addTag("PERIODIC_REMINDER")
+            .setInitialDelay(timeDelayInSeconds, TimeUnit.SECONDS)
+            .setInputData(
+                workDataOf(
+                    "title" to "Reminder",
+                    "message" to message
+                )
+            ).build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "PERIODIC_REMINDER_NOTIFICATION",
+            ExistingPeriodicWorkPolicy.UPDATE,
+            workRequest
+        )
     }
 
 }
