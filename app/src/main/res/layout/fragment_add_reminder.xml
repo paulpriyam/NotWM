@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Reminder"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etReminderTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Reminder title"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <EditText
+        android:id="@+id/etReminderDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Reminder description"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etReminderTitle" />
+
+   <com.google.android.material.textfield.TextInputLayout
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@id/etReminderDesc"
+       android:layout_marginTop="16dp"
+       app:hintEnabled="true"
+       android:id="@+id/inputDate"
+       app:hintAnimationEnabled="true"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toStartOf="@id/inputTime"
+       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+       android:layout_marginHorizontal="16dp">
+
+       <com.google.android.material.textfield.TextInputEditText
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:hint="Enter date"
+           android:drawableEnd="@drawable/ic_calendar"
+           android:id="@+id/etDate"/>
+
+   </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/etReminderDesc"
+        android:layout_marginTop="16dp"
+        app:hintEnabled="true"
+        android:id="@+id/inputTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/inputDate"
+        app:hintAnimationEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginHorizontal="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Enter time"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:id="@+id/etTime"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btInsert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Set"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputTime" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="none"
+        android:id="@+id/chipScroll"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:chipSpacingHorizontal="8dp"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPink"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                style="@style/ChipStyle"
+                app:chipIconVisible="true"
+                app:chipIcon="@drawable/ic_circle_pink"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRed"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                app:chipIcon="@drawable/ic_circle_red"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipYellow"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                app:chipIcon="@drawable/ic_circle_yellow"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTeal"
+                android:layout_width="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                android:layout_height="60dp"
+                app:chipIcon="@drawable/ic_circle_teal"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTealLight"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                app:chipIcon="@drawable/ic_circle_teal_light"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPurpleLight"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                app:chipIcon="@drawable/ic_circle_purple_light"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPurpleDark"
+                android:layout_width="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                android:layout_height="60dp"
+                app:chipIcon="@drawable/ic_circle_puple_dark"
+                app:chipIconSize="54dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPurple"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:chipIconVisible="true"
+                style="@style/ChipStyle"
+                app:chipIcon="@drawable/ic_circle_purple"
+                app:chipIconSize="54dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

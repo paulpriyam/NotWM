@@ -9,8 +9,8 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent) {
         if (context != null) {
             NotificationHelper(context).createNotification(
-                "Alarm Manager",
-                "This notification has been created using alarm manager set alarmClock"
+                intent.getStringExtra("Title").toString(),
+                intent.getStringExtra("Desc").toString()
             )
         }
     }

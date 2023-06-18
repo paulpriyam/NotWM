@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/reminderListFragment">
+
+    <fragment
+        android:id="@+id/addReminderFragment"
+        tools:layout="@layout/fragment_add_reminder"
+        android:name="com.example.forgetnoting.ui.AddReminderFragment"
+        android:label="AddReminderFragment" >
+        <action
+            android:id="@+id/action_addReminderFragment_to_reminderListFragment"
+            app:destination="@id/reminderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reminderListFragment"
+        tools:layout="@layout/fragment_reminder_list"
+        android:name="com.example.forgetnoting.ui.ReminderListFragment"
+        android:label="ReminderListFragment" >
+        <action
+            android:id="@+id/action_reminderListFragment_to_addReminderFragment"
+            app:destination="@id/addReminderFragment" />
+    </fragment>
+</navigation>

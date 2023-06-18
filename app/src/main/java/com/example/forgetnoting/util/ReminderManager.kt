@@ -12,6 +12,8 @@ object ReminderManager {
     fun startReminder(
         context: Context,
         reminderTime: String = "08:00",
+        reminderTitle: String = "Alarm Manager",
+        reminderDesc: String = "This notification has been created using alarm manager set alarmClock",
         reminderId: Int = REMINDER_NOTIFICATION_REQUEST_CODE
     ) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -22,7 +24,10 @@ object ReminderManager {
             PendingIntent.getBroadcast(
                 context.applicationContext,
                 reminderId,
-                it,
+                it.apply {
+                    putExtra("Title", reminderTitle)
+                    putExtra("Desc", reminderDesc)
+                },
                 PendingIntent.FLAG_IMMUTABLE
             )
         }
