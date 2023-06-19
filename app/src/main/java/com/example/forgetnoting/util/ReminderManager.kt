@@ -27,6 +27,7 @@ object ReminderManager {
                 it.apply {
                     putExtra("Title", reminderTitle)
                     putExtra("Desc", reminderDesc)
+                    putExtra("reminderId", reminderId)
                 },
                 PendingIntent.FLAG_IMMUTABLE
             )
@@ -56,7 +57,7 @@ object ReminderManager {
     ) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java).let {
-            PendingIntent.getBroadcast(
+            PendingIntent.getService(
                 context,
                 reminderId,
                 it,

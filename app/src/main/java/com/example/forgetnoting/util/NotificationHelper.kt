@@ -30,17 +30,25 @@ class NotificationHelper(private val context: Context) {
         }
     }
 
-    fun createNotification(title: String, message: String) {
+    fun createNotification(title: String, message: String, reminderId: Int) {
         createNotificationChannel()
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
 
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val cancelIntent = Intent(context.applicationContext, CancelAlarmReceiver::class.java).let {
+            PendingIntent.getBroadcast(context, 1, it.apply {
+                putExtra("reminderId", reminderId)
+            }, PendingIntent.FLAG_IMMUTABLE)
+        }
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val notification = NotificationCompat.Builder(context, Constants.NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle(title)
             .setContentText(message)
+            .setAutoCancel(true)
+            .addAction(R.drawable.ic_cancel, "cancel the notification", cancelIntent)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()

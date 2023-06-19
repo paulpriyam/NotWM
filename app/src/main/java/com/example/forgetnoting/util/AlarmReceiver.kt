@@ -10,7 +10,8 @@ class AlarmReceiver : BroadcastReceiver() {
         if (context != null) {
             NotificationHelper(context).createNotification(
                 intent.getStringExtra("Title").toString(),
-                intent.getStringExtra("Desc").toString()
+                intent.getStringExtra("Desc").toString(),
+                intent.getIntExtra("reminderId",0)
             )
         }
     }
