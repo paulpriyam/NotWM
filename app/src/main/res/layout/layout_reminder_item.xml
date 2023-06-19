@@ -1,67 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingHorizontal="16dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    app:cardCornerRadius="8dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/iv_cancel"/>
+        android:paddingHorizontal="16dp">
 
-    <TextView
-        android:id="@+id/tvRemindAt"
-        android:textSize="60sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        android:text="01:30"
-        android:textColor="@color/purple_200"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvReminderTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Sample Reminder"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:maxLines="2"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toEndOf="@id/tvRemindAt"
-        android:layout_marginStart="16sp"
-        app:layout_constraintEnd_toStartOf="@id/iv_cancel"
-        app:layout_constraintTop_toTopOf="@id/tvRemindAt"/>
+        <TextView
+            android:id="@+id/tvRemindAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:text="01:30"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvReminderDesc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="This is a sample reminder just to check if it's working"
-        android:textSize="16sp"
-        android:maxLines="2"
+        <TextView
+            android:id="@+id/tvReminderTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:layout_marginEnd="8dp"
+            android:maxLines="2"
+            android:text="Sample Reminder"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/iv_cancel"
+            app:layout_constraintStart_toEndOf="@id/tvRemindAt"
+            app:layout_constraintTop_toTopOf="@id/tvRemindAt" />
 
-        app:layout_constraintTop_toBottomOf="@id/tvReminderTitle"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvReminderTitle" />
+        <TextView
+            android:id="@+id/tvReminderDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:maxLines="2"
+            android:text="This is a sample reminder just to check if it's working"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRepeatingStatus" />
 
-    <TextView
-        android:id="@+id/tvCreatedAt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="17/06/2023 8:30"
-        app:layout_constraintStart_toStartOf="@id/tvReminderTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvReminderDesc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/teal_700"
-        android:layout_marginBottom="24dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCreatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="17/06/2023 8:30"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/tvReminderTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvReminderTitle" />
+
+        <TextView
+            android:id="@+id/tvRepeatingStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Non Repeating"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tvCreatedAt"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvReminderTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
