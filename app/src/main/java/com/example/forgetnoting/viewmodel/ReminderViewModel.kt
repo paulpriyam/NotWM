@@ -99,6 +99,16 @@ class ReminderViewModel @Inject constructor(private val reminderRepository: Remi
         }
     }
 
+    fun fromIntervalToMillis(interval: String): Long {
+        return when (interval) {
+            "Every Hour" -> 60 * 60 * 1000L
+            "Every Day" -> 24 * 60 * 60 * 1000L
+            "Every Week" -> 7 * 24 * 60 * 60 * 1000L
+            "Every Month" -> 30 * 24 * 60 * 60 * 1000L
+            else -> 0L
+        }
+    }
+
 }
 
 enum class ReminderGroup {

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ForgetNoting</string>
+    <string-array name="repeat_interval">
+        <item >Every Hour</item>
+        <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Every Month</item>
+    </string-array>
 </resources>

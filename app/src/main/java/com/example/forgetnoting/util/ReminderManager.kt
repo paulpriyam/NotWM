@@ -14,7 +14,9 @@ object ReminderManager {
         reminderTime: String = "08:00",
         reminderTitle: String = "Alarm Manager",
         reminderDesc: String = "This notification has been created using alarm manager set alarmClock",
-        reminderId: Int = REMINDER_NOTIFICATION_REQUEST_CODE
+        reminderId: Int = REMINDER_NOTIFICATION_REQUEST_CODE,
+        isRepeating: Boolean = false,
+        repeatingInterval: Long = 0L
     ) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -43,12 +45,19 @@ object ReminderManager {
             }.timeInMillis - calendar.timeInMillis > 0) {
             calendar.add(Calendar.HOUR_OF_DAY, 1)
         }
-
-        alarmManager.setAlarmClock(
-            AlarmManager.AlarmClockInfo(calendar.timeInMillis, intent),
-            intent
-        )
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,AlarmManager.INTERVAL_HALF_HOUR,intent)
+        if (isRepeating) {
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                repeatingInterval,
+                intent
+            )
+        } else {
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(calendar.timeInMillis, intent),
+                intent
+            )
+        }
     }
 
     fun stopReminder(

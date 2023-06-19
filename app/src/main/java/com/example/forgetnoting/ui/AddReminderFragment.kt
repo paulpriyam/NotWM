@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,11 +30,14 @@ import java.util.*
 
 
 @AndroidEntryPoint
-class AddReminderFragment : Fragment(R.layout.fragment_add_reminder) {
+class AddReminderFragment : Fragment(R.layout.fragment_add_reminder),
+    AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentAddReminderBinding
     private val viewModel: ReminderViewModel by viewModels()
     private var defaultChipColor = R.color.yellow
+    private var isRepeating: Boolean = false
+    private var repeatingInterval = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +73,24 @@ class AddReminderFragment : Fragment(R.layout.fragment_add_reminder) {
         binding.chipTealLight.setOnCheckedChangeListener(listener)
         binding.chipYellow.setOnCheckedChangeListener(listener)
 
+        binding.cbRepeat.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if (isChecked && compoundButton.isPressed) {
+                isRepeating = true
+                binding.spinnerView.visibility = View.VISIBLE
+            } else {
+                isRepeating = false
+                binding.spinnerView.visibility = View.GONE
+            }
+        }
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.repeat_interval,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also {
+            binding.spinner.adapter = it
+        }
+        binding.spinner.onItemSelectedListener = this
+
         binding.etDate.setOnClickListener {
             openDatePickerDialog()
         }
@@ -89,7 +112,9 @@ class AddReminderFragment : Fragment(R.layout.fragment_add_reminder) {
                         reminder.remindAt,
                         reminder.title,
                         reminder.description,
-                        id
+                        id,
+                        reminder.isRepeating,
+                        reminder.repeatInterval
                     )
                     Log.d(
                         "Reminder created --->",
@@ -141,10 +166,21 @@ class AddReminderFragment : Fragment(R.layout.fragment_add_reminder) {
             title = binding.etReminderTitle.text.toString(),
             description = binding.etReminderDesc.text.toString(),
             color = defaultChipColor,
-            group = group
+            group = group,
+            isRepeating = isRepeating,
+            repeatInterval = repeatingInterval
         )
         Log.d("Reminder --->", "${reminder.toString()}")
         viewModel.addReminder(reminder)
 
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val interval = parent?.getItemAtPosition(p2).toString()
+        repeatingInterval = viewModel.fromIntervalToMillis(interval)
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        //no implementation required.
     }
 }

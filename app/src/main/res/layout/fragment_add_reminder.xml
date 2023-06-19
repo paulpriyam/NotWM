@@ -88,6 +88,32 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="repeat Notification"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/inputDate"
+        app:layout_constraintStart_toStartOf="@id/inputDate"
+        android:id="@+id/cbRepeat"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/spinnerView"
+        android:visibility="gone"
+        android:background="@drawable/spinner_bg"
+        app:layout_constraintTop_toBottomOf="@id/cbRepeat">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:spinnerMode="dialog"
+            android:layout_height="match_parent"
+            android:id="@+id/spinner"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btInsert"
         android:layout_width="wrap_content"
@@ -96,7 +122,7 @@
         android:text="Set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputTime" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerView" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
