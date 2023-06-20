@@ -3,7 +3,9 @@ package com.example.forgetnoting.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.LayoutReminderItemBinding
 import com.example.forgetnoting.model.Reminder
 import com.example.forgetnoting.util.toDateTimeString
@@ -21,7 +23,7 @@ class ReminderAdapter(private val context: Context) :
             binding.tvReminderDesc.text = reminder.description
             binding.tvRemindAt.text = reminder.remindAt
             binding.tvCreatedAt.text = reminder.createdAt?.toDateTimeString()
-//            binding.root.setBackgroundColor(context.resources.getColor(reminder.color))
+            binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.yellow))
         }
 
     }

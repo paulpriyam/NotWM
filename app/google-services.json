@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "388821466303",
+    "project_id": "forgetnothing-b20e6",
+    "storage_bucket": "forgetnothing-b20e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388821466303:android:89b85e5a2a1d023f2bda0a",
+        "android_client_info": {
+          "package_name": "com.example.forgetnoting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388821466303-fkhbindq1sr65p63g3qstevumq0b8bqa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.forgetnoting",
+            "certificate_hash": "ae567b247873b1196a8901179a0b948b0cb8d0b8"
+          }
+        },
+        {
+          "client_id": "388821466303-u82grgvmnogo9svnps5psmi87jeja5gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjeaTMdXDQEBT8jTz63cbWDESEYGUVbAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388821466303-u82grgvmnogo9svnps5psmi87jeja5gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
