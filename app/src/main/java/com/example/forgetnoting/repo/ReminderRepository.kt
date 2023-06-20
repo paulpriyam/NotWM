@@ -21,4 +21,6 @@ class ReminderRepository @Inject constructor(private val reminderDao: ReminderDa
     fun getReminderById(reminderId: Int) = reminderDao.getReminderById(reminderId)
 
     fun getIdFromRowId(rowId: Long) = reminderDao.getIdFromRowId(rowId)
+
+    fun getAllReminderPagingList() = reminderDao.getAllReminderPagedList()
 }

@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.forgetnoting.R
 import com.example.forgetnoting.model.Reminder
 import com.example.forgetnoting.repo.ReminderRepository
@@ -33,6 +36,18 @@ class ReminderViewModel @Inject constructor(private val reminderRepository: Remi
             }
         }
     }
+
+    val reminderFlow = Pager(
+        PagingConfig(
+            pageSize = 10,
+            initialLoadSize = 10,
+            prefetchDistance = 5,
+            enablePlaceholders = false,
+            maxSize = 30
+        )
+    ) {
+        reminderRepository.getAllReminderPagingList()
+    }.flow.cachedIn(viewModelScope)
 
     fun addReminder(reminder: Reminder) =
         viewModelScope.launch(Dispatchers.IO) {
