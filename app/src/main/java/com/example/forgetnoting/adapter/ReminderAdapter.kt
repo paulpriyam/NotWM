@@ -23,7 +23,12 @@ class ReminderAdapter(private val context: Context) :
             binding.tvReminderDesc.text = reminder.description
             binding.tvRemindAt.text = reminder.remindAt
             binding.tvCreatedAt.text = reminder.createdAt?.toDateTimeString()
-            binding.root.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.yellow))
+            binding.root.setBackgroundColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    reminder.color
+                )
+            )
         }
 
     }
