@@ -1,4 +1,4 @@
-package com.example.forgetnoting.viewmodel
+package com.example.forgetnoting.reminder.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,8 +8,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.forgetnoting.R
-import com.example.forgetnoting.model.Reminder
-import com.example.forgetnoting.repo.ReminderRepository
+import com.example.forgetnoting.reminder.model.Reminder
+import com.example.forgetnoting.reminder.repo.ReminderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

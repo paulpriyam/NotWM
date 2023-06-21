@@ -1,8 +1,8 @@
-package com.example.forgetnoting.db
+package com.example.forgetnoting.reminder.db
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.example.forgetnoting.model.Reminder
+import com.example.forgetnoting.reminder.model.Reminder
 import kotlinx.coroutines.flow.Flow
 import java.sql.RowId
 

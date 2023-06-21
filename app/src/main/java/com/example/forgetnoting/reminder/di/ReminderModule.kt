@@ -1,13 +1,10 @@
-package com.example.forgetnoting.di
+package com.example.forgetnoting.reminder.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.forgetnoting.db.HabitDao
-import com.example.forgetnoting.db.HabitDatabase
-import com.example.forgetnoting.db.ReminderDao
-import com.example.forgetnoting.db.ReminderDatabase
-import com.example.forgetnoting.repo.HabitRepository
-import com.example.forgetnoting.repo.ReminderRepository
+import com.example.forgetnoting.reminder.db.ReminderDao
+import com.example.forgetnoting.reminder.db.ReminderDatabase
+import com.example.forgetnoting.reminder.repo.ReminderRepository
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,12 +23,7 @@ object ReminderModule {
             .fallbackToDestructiveMigration()
             .build()
 
-    @Provides
-    @Singleton
-    fun provideHabitDatabase(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, HabitDatabase::class.java, "Habit_db")
-            .fallbackToDestructiveMigration()
-            .build()
+
 
 
     @Provides
@@ -39,15 +31,11 @@ object ReminderModule {
     fun provideReminderDao(reminderDatabase: ReminderDatabase) =
         reminderDatabase.reminderDoa()
 
-    @Provides
-    @Singleton
-    fun provideHabitDao(habitDatabase: HabitDatabase) = habitDatabase.habitDao()
+
 
     @Provides
     @Singleton
     fun provideReminderRepository(reminderDao: ReminderDao) = ReminderRepository(reminderDao)
 
-    @Provides
-    @Singleton
-    fun provideHabitRepository(habitDao: HabitDao) = HabitRepository(habitDao)
+
 }

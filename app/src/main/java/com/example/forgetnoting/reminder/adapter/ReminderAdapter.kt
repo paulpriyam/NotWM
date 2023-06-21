@@ -1,4 +1,4 @@
-package com.example.forgetnoting.adapter
+package com.example.forgetnoting.reminder.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.LayoutReminderItemBinding
-import com.example.forgetnoting.model.Reminder
+import com.example.forgetnoting.reminder.model.Reminder
 import com.example.forgetnoting.util.toDateTimeString
 
 class ReminderAdapter(private val context: Context) :

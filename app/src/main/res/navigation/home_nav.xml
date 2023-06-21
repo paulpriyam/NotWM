@@ -22,5 +22,26 @@
         <action
             android:id="@+id/action_reminderListFragment_to_addReminderFragment"
             app:destination="@id/addReminderFragment" />
+        <action
+            android:id="@+id/action_reminderListFragment_to_habitListFragment"
+            app:destination="@id/habitListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/habitListFragment"
+        tools:layout="@layout/fragment_habit_list"
+        android:name="com.example.forgetnoting.habit.ui.HabitListFragment"
+        android:label="HabitListFragment" >
+        <action
+            android:id="@+id/action_habitListFragment_to_addHabitFragment"
+            app:destination="@id/addHabitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHabitFragment"
+        tools:layout="@layout/fragment_add_habit"
+        android:name="com.example.forgetnoting.habit.ui.AddHabitFragment"
+        android:label="AddHabitFragment" >
+        <action
+            android:id="@+id/action_addHabitFragment_to_habitListFragment"
+            app:destination="@id/habitListFragment" />
     </fragment>
 </navigation>

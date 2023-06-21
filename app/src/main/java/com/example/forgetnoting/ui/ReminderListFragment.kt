@@ -19,10 +19,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forgetnoting.R
-import com.example.forgetnoting.adapter.ReminderAdapter
-import com.example.forgetnoting.adapter.ReminderListPagingDataAdapter
+import com.example.forgetnoting.reminder.adapter.ReminderAdapter
+import com.example.forgetnoting.reminder.adapter.ReminderListPagingDataAdapter
 import com.example.forgetnoting.databinding.FragmentReminderListBinding
-import com.example.forgetnoting.viewmodel.ReminderViewModel
+import com.example.forgetnoting.reminder.viewmodel.ReminderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.security.Permissions

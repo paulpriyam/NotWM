@@ -16,9 +16,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.FragmentAddReminderBinding
-import com.example.forgetnoting.model.Reminder
+import com.example.forgetnoting.reminder.model.Reminder
 import com.example.forgetnoting.util.ReminderManager
-import com.example.forgetnoting.viewmodel.ReminderViewModel
+import com.example.forgetnoting.reminder.viewmodel.ReminderViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

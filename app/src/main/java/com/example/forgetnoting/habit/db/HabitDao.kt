@@ -1,8 +1,8 @@
-package com.example.forgetnoting.db
+package com.example.forgetnoting.habit.db
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.example.forgetnoting.model.Habit
+import com.example.forgetnoting.habit.model.Habit
 
 @Dao
 interface HabitDao {

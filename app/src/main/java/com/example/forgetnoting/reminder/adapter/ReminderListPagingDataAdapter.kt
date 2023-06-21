@@ -1,4 +1,4 @@
-package com.example.forgetnoting.adapter
+package com.example.forgetnoting.reminder.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forgetnoting.databinding.LayoutReminderItemBinding
-import com.example.forgetnoting.model.Reminder
+import com.example.forgetnoting.reminder.model.Reminder
 import com.example.forgetnoting.util.toDateTimeString
 
 class ReminderListPagingDataAdapter :

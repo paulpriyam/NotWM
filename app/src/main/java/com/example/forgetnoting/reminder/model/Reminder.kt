@@ -1,4 +1,4 @@
-package com.example.forgetnoting.model
+package com.example.forgetnoting.reminder.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

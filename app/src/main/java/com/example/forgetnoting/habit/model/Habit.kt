@@ -1,4 +1,4 @@
-package com.example.forgetnoting.model
+package com.example.forgetnoting.habit.model
 
 import android.graphics.Bitmap
 import androidx.room.Entity

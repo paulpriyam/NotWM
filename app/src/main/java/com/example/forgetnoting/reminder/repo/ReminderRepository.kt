@@ -1,7 +1,7 @@
-package com.example.forgetnoting.repo
+package com.example.forgetnoting.reminder.repo
 
-import com.example.forgetnoting.db.ReminderDao
-import com.example.forgetnoting.model.Reminder
+import com.example.forgetnoting.reminder.db.ReminderDao
+import com.example.forgetnoting.reminder.model.Reminder
 import javax.inject.Inject
 
 class ReminderRepository @Inject constructor(private val reminderDao: ReminderDao) {

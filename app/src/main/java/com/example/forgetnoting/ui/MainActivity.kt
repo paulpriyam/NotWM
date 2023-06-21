@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.ActivityMainBinding
 import com.example.forgetnoting.util.ReminderManager
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
         navController = navHostFragment.navController
 
-        setupActionBarWithNavController(navController)
+        binding.bnvHome.setupWithNavController(navController)
+//        setupActionBarWithNavController(navController)
 //        val today = Calendar.getInstance()
 //        var chosenYear = 0
 //        var chosenMonth = 0
