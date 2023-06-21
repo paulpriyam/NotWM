@@ -6,4 +6,16 @@
         <item>Every Week</item>
         <item>Every Month</item>
     </string-array>
+
+    <string-array name="habit_tags">
+        <item >DEFAULT</item>
+        <item>ANDROID</item>
+        <item>DSA</item>
+        <item>WATER</item>
+        <item>GUITAR</item>
+        <item>DRIVING</item>
+        <item>SWIMMING</item>
+        <item>READING</item>
+        <item>SELF-GROWTH</item>
+    </string-array>
 </resources>
