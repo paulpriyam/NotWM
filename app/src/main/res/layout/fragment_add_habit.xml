@@ -67,31 +67,26 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/inputHabitDesc"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/spinnerView"
         android:layout_marginTop="16dp"
-        app:hintEnabled="true"
-        android:id="@+id/inputHabitTag"
-        app:hintAnimationEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginHorizontal="16dp">
+        android:background="@drawable/spinner_bg"
+        app:layout_constraintTop_toBottomOf="@id/inputHabitDesc">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <Spinner
             android:layout_width="match_parent"
+            android:spinnerMode="dialog"
             android:layout_height="match_parent"
-            android:hint="Enter Tag"
-            android:id="@+id/etHabitTag"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+            android:id="@+id/spinner"/>
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/inputHabitTag"
+        app:layout_constraintTop_toBottomOf="@id/spinnerView"
         android:layout_marginTop="16dp"
         app:hintEnabled="true"
         android:id="@+id/inputGoal"
@@ -104,7 +99,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter Tag"
+            android:hint="Enter Days Done"
             android:id="@+id/etGoal"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +107,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/inputHabitTag"
+        app:layout_constraintTop_toBottomOf="@id/spinnerView"
         android:layout_marginTop="16dp"
         app:hintEnabled="true"
         android:id="@+id/inputCompleted"
@@ -125,7 +120,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter Tag"
+            android:hint="Enter Total Days"
             android:id="@+id/etDaysCompleted"/>
 
     </com.google.android.material.textfield.TextInputLayout>

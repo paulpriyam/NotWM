@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.FragmentHabitListBinding
 import com.example.forgetnoting.habit.viewmodel.HabitViewModel
@@ -28,5 +29,9 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.fabAddHabit.setOnClickListener {
+            findNavController().navigate(R.id.action_habitListFragment_to_addHabitFragment)
+        }
     }
 }
