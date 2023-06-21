@@ -99,7 +99,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter Days Done"
+            android:hint="Target days"
+            android:text="30"
             android:id="@+id/etGoal"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -120,7 +121,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter Total Days"
+            android:hint="Days Completed"
             android:id="@+id/etDaysCompleted"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -134,5 +135,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="DONE"
         android:id="@+id/btnAddHabit"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progress"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
