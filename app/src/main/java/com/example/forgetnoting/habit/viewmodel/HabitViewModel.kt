@@ -45,4 +45,16 @@ class HabitViewModel @Inject constructor(private val habitRepository: HabitRepos
             }
         }
     }
+
+    fun deleteHabitById(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            habitRepository.deleteHabitById(id)
+        }
+    }
+
+    fun deleteNullImageEntry(){
+        viewModelScope.launch(Dispatchers.IO) {
+            habitRepository.deleteNullImageEntry()
+        }
+    }
 }

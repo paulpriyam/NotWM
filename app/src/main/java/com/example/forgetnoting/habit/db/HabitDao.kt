@@ -13,6 +13,12 @@ interface HabitDao {
     @Delete
     suspend fun deleteHabit(habit: Habit)
 
+    @Query("DELETE FROM habit_table WHERE id = :id")
+    suspend fun deleteHabitById(id: Int)
+
+    @Query("DELETE FROM habit_table WHERE image IS NULL")
+    suspend fun deleteNullImage()
+
     @Query("SELECT * FROM habit_table WHERE id = :id")
     fun getHabitById(id: Int): Habit
 

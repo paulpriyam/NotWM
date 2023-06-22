@@ -10,6 +10,10 @@ class HabitRepository @Inject constructor(private val habitDao: HabitDao) {
 
     suspend fun deleteHabit(habit: Habit) = habitDao.deleteHabit(habit)
 
+    suspend fun deleteHabitById(id: Int) = habitDao.deleteHabitById(id)
+
+    suspend fun deleteNullImageEntry()=habitDao.deleteNullImage()
+
     fun getAllHabits() = habitDao.getAllHabits()
 
     fun getAllHabitPagedList() = habitDao.getAllHabitsPagedList()
