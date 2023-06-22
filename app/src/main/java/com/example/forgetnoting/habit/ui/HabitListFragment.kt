@@ -1,6 +1,10 @@
 package com.example.forgetnoting.habit.ui
 
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +13,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.forgetnoting.R
 import com.example.forgetnoting.databinding.FragmentHabitListBinding
 import com.example.forgetnoting.habit.adapter.HabitListAdapter
 import com.example.forgetnoting.habit.viewmodel.HabitViewModel
+import com.example.forgetnoting.util.toDp
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.abs
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
+
+    private lateinit var dragHelper: ItemTouchHelper
+    private lateinit var swipeHelper: ItemTouchHelper
 
     private lateinit var binding: FragmentHabitListBinding
     private val viewModel: HabitViewModel by viewModels()
@@ -56,6 +68,87 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
         viewModel.habitsLiveData.observe(viewLifecycleOwner) {
             habitListAdapter.setData(it)
         }
+
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val height = toDp(requireContext(), displayMetrics.heightPixels / displayMetrics.density)
+        val width = toDp(requireContext(), displayMetrics.widthPixels / displayMetrics.density)
+
+        val deleteIcon = resources.getDrawable(R.drawable.ic_delete, null)
+        val favouriteIcon = resources.getDrawable(R.drawable.ic_favourite, null)
+
+        val deleteColor = resources.getColor(android.R.color.holo_red_light)
+        val favouriteColor = resources.getColor(android.R.color.holo_green_light)
+
+        swipeHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ) = true
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val pos = viewHolder.absoluteAdapterPosition
+                if (direction == ItemTouchHelper.LEFT) {
+
+                } else {
+
+                }
+            }
+
+            override fun onChildDrawOver(
+                canvas: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                // 1. Background color based on swipe direction.
+                when {
+                    abs(dX) < width / 3 -> canvas.drawColor(Color.GRAY)
+                    dX > width / 3 -> canvas.drawColor(deleteColor)
+                    else -> canvas.drawColor(favouriteColor)
+                }
+
+                // 2. Printing the Icons
+                val textMargin = resources.getDimension(R.dimen.text_margin)
+                    .roundToInt()
+
+                deleteIcon.bounds = Rect(
+                    textMargin,
+                    viewHolder.itemView.top + textMargin + toDp(requireContext(), 8f),
+                    textMargin + deleteIcon.intrinsicWidth,
+                    viewHolder.itemView.top + deleteIcon.intrinsicHeight
+                            + textMargin + toDp(requireContext(), 8f)
+                )
+
+                favouriteIcon.bounds = Rect(
+                    width - textMargin - favouriteIcon.intrinsicWidth,
+                    viewHolder.itemView.top + textMargin + toDp(requireContext(), 8f),
+                    width - textMargin,
+                    viewHolder.itemView.top + favouriteIcon.intrinsicHeight
+                            + textMargin + toDp(requireContext(), 8f)
+                )
+
+                //3. Drawing icon based upon direction swiped
+                if (dX > 0) deleteIcon.draw(canvas) else favouriteIcon.draw(canvas)
+
+                super.onChildDrawOver(
+                    canvas,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+            }
+        })
+        swipeHelper.attachToRecyclerView(binding.rvHabits)
     }
 
     override fun onResume() {
