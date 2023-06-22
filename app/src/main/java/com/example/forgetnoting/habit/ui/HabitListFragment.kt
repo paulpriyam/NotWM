@@ -3,6 +3,7 @@ package com.example.forgetnoting.habit.ui
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.example.forgetnoting.habit.adapter.HabitListAdapter
 import com.example.forgetnoting.habit.viewmodel.HabitViewModel
 import com.example.forgetnoting.util.toDp
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -83,6 +85,9 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
             0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         ) {
+            val deleteBackground = ColorDrawable(Color.RED)
+            val swipeInitiatedBackground = ColorDrawable(Color.GRAY)
+            val favouriteBackground = ColorDrawable(Color.GREEN)
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -109,9 +114,43 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
             ) {
                 // 1. Background color based on swipe direction.
                 when {
-                    abs(dX) < width / 3 -> canvas.drawColor(Color.GRAY)
-                    dX > width / 3 -> canvas.drawColor(deleteColor)
-                    else -> canvas.drawColor(favouriteColor)
+                    abs(dX) < width / 3 -> {
+                        if (dX > 0) {
+                            swipeInitiatedBackground.setBounds(
+                                viewHolder.itemView.left,
+                                viewHolder.itemView.top,
+                                viewHolder.itemView.left + dX.toInt(),
+                                viewHolder.itemView.bottom
+                            )
+                            swipeInitiatedBackground.draw(canvas)
+                        } else {
+                            swipeInitiatedBackground.setBounds(
+                                viewHolder.itemView.right + dX.toInt(),
+                                viewHolder.itemView.top,
+                                viewHolder.itemView.right,
+                                viewHolder.itemView.bottom
+                            )
+                            swipeInitiatedBackground.draw(canvas)
+                        }
+                    }
+                    dX > width / 3 -> {
+                        deleteBackground.setBounds(
+                            viewHolder.itemView.left,
+                            viewHolder.itemView.top,
+                            viewHolder.itemView.left + dX.toInt(),
+                            viewHolder.itemView.bottom
+                        )
+                        deleteBackground.draw(canvas)
+                    }
+                    else -> {
+                        favouriteBackground.setBounds(
+                            viewHolder.itemView.right + dX.toInt(),
+                            viewHolder.itemView.top,
+                            viewHolder.itemView.right,
+                            viewHolder.itemView.bottom
+                        )
+                        favouriteBackground.draw(canvas)
+                    }
                 }
 
                 // 2. Printing the Icons
@@ -127,9 +166,9 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
                 )
 
                 favouriteIcon.bounds = Rect(
-                    width - textMargin - favouriteIcon.intrinsicWidth,
+                    width - 3 * textMargin - favouriteIcon.intrinsicWidth,
                     viewHolder.itemView.top + textMargin + toDp(requireContext(), 8f),
-                    width - textMargin,
+                    width - 3 * textMargin,
                     viewHolder.itemView.top + favouriteIcon.intrinsicHeight
                             + textMargin + toDp(requireContext(), 8f)
                 )
@@ -149,6 +188,33 @@ class HabitListFragment : Fragment(R.layout.fragment_habit_list) {
             }
         })
         swipeHelper.attachToRecyclerView(binding.rvHabits)
+
+//        dragHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+//            ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0
+//        ) {
+//            override fun onMove(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder,
+//                target: RecyclerView.ViewHolder
+//            ): Boolean {
+//                viewHolder.itemView.elevation = 16F
+//
+//                val from = viewHolder.adapterPosition
+//                val to = target.adapterPosition
+//
+//                Collections.swap(list, from, to)
+//                habitListAdapter.notifyItemMoved(from, to)
+//                return true
+//            }
+//
+//            override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+//                super.onSelectedChanged(viewHolder, actionState)
+//                viewHolder?.itemView?.elevation = 0F
+//            }
+//
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = Unit
+//
+//        })
     }
 
     override fun onResume() {
